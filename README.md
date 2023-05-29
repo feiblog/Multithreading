@@ -1,22 +1,25 @@
 ﻿# Mulitithreading_StudyCody
 
 <!--TOC-->
-  - [第一章 线程基础](#Chapter1)
-    - [Recipe1 使用C#创建线程](#Chapter1_Recipe1)
-    - [Recipe2 暂停线程](#Chapter1_Recipe2)
-    - [Recipe3 线程等待](#Chapter1_Recipe3)
-    - [Recipe4 终止线程](#Chapter1_Recipe4)
-    - [Recipe5 检测线程状态](#Chapter1_Recipe5)
-    - [Recipe6 线程优先级](#Chapter1_Recipe6)
-    - [Recipe7 前台线程和后台线程](#Chapter1_Recipe7)
-    - [Recipe8 向线程传递参数](#Chapter1_Recipe8)
-    - [Recipe9 使用C#中的`lock`关键字](#Chapter1_Recipe9)
-    - [Recipe10 <font color="#FF0000">***</font>使用`Monitor`类锁定资源](#Chapter1_Recipe10)
-    - [Recipe11 处理异常](#Chapter1_Recipe11)
-  - [第二章线程同步](#Chapter2)
+  - [<span id="Chapter1">第一章 线程基础</span>](#span-idchapter1-span)
+    - [<span id="Chapter1_Recipe1">Recipe1 使用C#创建线程</span>](#span-idchapter1_recipe1recipe1-cspan)
+    - [<span id="Chapter1_Recipe2">Recipe2 暂停线程</span>](#span-idchapter1_recipe2recipe2-span)
+    - [<span id="Chapter1_Recipe3">Recipe3 线程等待</span>](#span-idchapter1_recipe3recipe3-span)
+    - [<span id="Chapter1_Recipe4">Recipe4 终止线程</span>](#span-idchapter1_recipe4recipe4-span)
+    - [<span id="Chapter1_Recipe5">Recipe5 检测线程状态</span>](#span-idchapter1_recipe5recipe5-span)
+    - [<span id="Chapter1_Recipe6">Recipe6 线程优先级</span>](#span-idchapter1_recipe6recipe6-span)
+    - [<span id="Chapter1_Recipe7">Recipe7 前台线程和后台线程</span>](#span-idchapter1_recipe7recipe7-span)
+    - [<span id="Chapter1_Recipe8">Recipe8 向线程传递参数</span>](#span-idchapter1_recipe8recipe8-span)
+    - [<span id="Chapter1_Recipe9">Recipe9 使用C#中的`lock`关键字</span>](#span-idchapter1_recipe9recipe9-clockspan)
+    - [<span id="Chapter1_Recipe10">Recipe10 <font color="#FF0000">***</font>使用`Monitor`类锁定资源</span>](#span-idchapter1_recipe10recipe10-font-colorff0000fontmonitorspan)
+    - [<span id="Chapter1_Recipe11">Recipe11 处理异常</span>](#span-idchapter1_recipe11recipe11-span)
+  - [<span id="Chapter2">第二章 线程同步</span>](#span-idchapter2-span)
     - [Recipe1 执行基本的原子操作](#recipe1-)
-    - [Recipe2 使用`Mutex`类](#recipe2-)
-   - [知识点](#)
+    - [Recipe2 使用`Mutex`类](#recipe2-mutex)
+    - [Recipe3 使用semaphoreSlim类](#recipe3-semaphoreslim)
+    - [Recipe4 使用AutoResetEvent类](#recipe4-autoresetevent)
+    - [Recipe5 使用ManualResetEventSlim类](#recipe5-manualreseteventslim)
+  - [<span id="Tips">知识点</span>](#span-idtipsspan)
 <!--/TOC-->
 
 ## <span id="Chapter1">第一章 线程基础</span>
@@ -53,10 +56,44 @@
 
 ### Recipe2 使用`Mutex`类
 
+> **`互斥`进程间同步的同步基元**<br/>
 > 描述如何使用`Mutex`类来同步两个单独的程序<br/>
 > `Mutex`是一种原始的同步方式，其只对一个线程授予对共享资源的独占访问
 
+### Recipe3 使用semaphoreSlim类
 
+> **`信号系统`对可同时访问资源或资源池的线程数加以限制的 System.Threading.Semaphore 的轻量替代**<br/>
+> 展示semaphoreSlim类是如何作为semaphore类的轻量级版本。<br/>
+> 该类限制了同时访问同一个资源的线程数量
+
+### Recipe4 使用AutoResetEvent类
+
+>当主程序启动时，定义了两个AutoResetEvent实例。<br/>
+>其中一个是从子线程向主线程发信号，另一个实例是从主线程向子线程发信号。
+
+>我们向AutoResetEvent构造方法传入false,定义了这两个实例的初始状态为unsignaled。<br/>
+>这意味着任何线程调用这两个对象中的任何一个的WaitOne方法将阻塞，直到我们调用了Set方法。<br/>
+>如果初始事件状态为true，那么AutoResetEvent实例的状态为signaled,如果线程调用了WaitOne方法则会被立即处理。<br/>
+>然后事件状态自动变为unsignaled,所以需要再对该实例调用一次Set方法，以便让其他的线程对该实例调用WaitOne方法从而继续执行。
+
+>然后我们创建了第二个线程，其会执行第一个操作10秒钟，然后等待从第二个线程发出的信号。<br/>
+>该信号意味着第一个操作已经完成。<br/>
+>现在第二个线程在等待主线程的限号。<br/>
+>我们对主线程做了一些附加工作，并通过调用_mainEvent.Set方法发送了一个信号。<br/>
+>然后等待从第二个线程发出的另一个信号。
+
+>AutoResetEvent类采用的是内核时间模式，所以等待时间不能太长。<br/>
+>使用ManualResetEventSlim类更好，因为它使用的是混合模式。
+
+### Recipe5 使用ManualResetEventSlim类
+
+> ManualResetEventSlim的整个工作方式有点像人群通过大门。<br/>
+> AutoResetEvent事件像一个旋转门，一次只允许一人通过。<br/>
+> ManualResetEventSlim是ManualResetEvent的混合版本，一直保持大门敞开直到手动调用Reset方法。<br/>
+> 当调用_mainEvent.Set时，相当于打开了大门从而允许准备好的线程接收信号并继续工作。<br/>
+> 然而线程3还处于睡眠状态，没有赶上时间。<br/>
+> 当调用_mainEvent.Reset相当于关闭了大门。<br/>
+> 最后一个线程已经准备好执行，但是不得不等待下一个信号，即要等待好几秒种。
 
 <br/>
 

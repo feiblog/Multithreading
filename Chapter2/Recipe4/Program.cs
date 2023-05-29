@@ -21,7 +21,7 @@ namespace Recipe4
          * 其中一个是从子线程向主线程发信号，另一个实例是从主线程向子线程发信号。
          * 
          * 我们向AutoResetEvent构造方法传入false,定义了这两个实例的初始状态为unsignaled。
-         * 这意味着任何线程调用这两个对象中的任何一个的WaitOne方法将阻塞，知道我们调用了Set方法。
+         * 这意味着任何线程调用这两个对象中的任何一个的WaitOne方法将阻塞，直到我们调用了Set方法。
          * 如果初始事件状态为true，那么AutoResetEvent实例的状态为signaled,如果线程调用了WaitOne方法则会被立即处理。
          * 然后事件状态自动变为unsignaled,所以需要再对该实例调用一次Set方法，以便让其他的线程对该实例调用WaitOne方法从而继续执行。
          *
@@ -48,7 +48,7 @@ namespace Recipe4
             WriteLine("Now running the second operation on a second thread");
             _workerEvent.WaitOne();
             WriteLine("Second operation is completed!");
-
+            ReadKey();
 
         }
 
