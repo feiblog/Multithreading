@@ -41,6 +41,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recipe5", "Chapter2\Recipe5
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recipe6", "Chapter2\Recipe6\Recipe6.csproj", "{EC6C1893-49DF-4425-87F7-CD6D0D545C74}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recipe7", "Chapter2\Recipe7\Recipe7.csproj", "{6ACA8335-CF75-4756-99A3-A66219B64A71}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -115,6 +117,10 @@ Global
 		{EC6C1893-49DF-4425-87F7-CD6D0D545C74}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC6C1893-49DF-4425-87F7-CD6D0D545C74}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC6C1893-49DF-4425-87F7-CD6D0D545C74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6ACA8335-CF75-4756-99A3-A66219B64A71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6ACA8335-CF75-4756-99A3-A66219B64A71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6ACA8335-CF75-4756-99A3-A66219B64A71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6ACA8335-CF75-4756-99A3-A66219B64A71}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -137,6 +143,7 @@ Global
 		{A2EC77C8-9458-4C39-BC2B-B65F88E46D88} = {72DC1BF9-DCE3-4E6B-A8E1-5AE6F7796464}
 		{1EA28AB7-6E58-4D1E-9445-289B6B36778B} = {72DC1BF9-DCE3-4E6B-A8E1-5AE6F7796464}
 		{EC6C1893-49DF-4425-87F7-CD6D0D545C74} = {72DC1BF9-DCE3-4E6B-A8E1-5AE6F7796464}
+		{6ACA8335-CF75-4756-99A3-A66219B64A71} = {72DC1BF9-DCE3-4E6B-A8E1-5AE6F7796464}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {88F8479B-2EFD-46AC-9238-5058031F788D}

@@ -20,6 +20,7 @@
     - [Recipe4 使用AutoResetEvent类](#recipe4-autoresetevent)
     - [Recipe5 使用ManualResetEventSlim类](#recipe5-manualreseteventslim)
     - [Recipe6 使用CountdownEvent类](#recipe6-countdownevent)
+    - [Recipe7 使用Barrier类](#recipe7-barrier)
   - [<span id="Tips">知识点</span>](#span-idtipsspan)
 <!--/TOC-->
 
@@ -107,6 +108,12 @@
 >如果调用_countdown。Signal()没达到指定的次数，那么_countdown.Wait()将一直等待。<br/>
 >请确保使用CountdownEvent时，所有线程完成后都要调用Signal方法。
 
+### Recipe7 使用Barrier类
+
+> 用于组织多个线程及时在某个时刻碰面。<br/>
+> 其提供了一个回调函数，每次线程调用了SignalAndWait方法后该回调函数会被执行。
+
+
 <br/>
 
 ## <span id="Tips">知识点</span>
@@ -126,6 +133,8 @@
 > 上下文切换（context switch）　　内核模式（kernel-mode）　　用户模式（user-mode）　　混合模式（hybrid）
 
 > `Interlocked` 为多个线程共享的变量提供原子操作
+
+> `Barrier` 使多个任务能够采用并行方式依据某种算法在多个阶段中协同工作
 
 <br/>
 <br/>
