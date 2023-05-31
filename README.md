@@ -21,6 +21,7 @@
     - [Recipe5 使用ManualResetEventSlim类](#recipe5-manualreseteventslim)
     - [Recipe6 使用CountdownEvent类](#recipe6-countdownevent)
     - [Recipe7 使用Barrier类](#recipe7-barrier)
+    - [Recipe8 使用ReaderWriterLockSlim类](#recipe8-readerwriterlockslim)
   - [<span id="Tips">知识点</span>](#span-idtipsspan)
 <!--/TOC-->
 
@@ -112,6 +113,11 @@
 
 > 用于组织多个线程及时在某个时刻碰面。<br/>
 > 其提供了一个回调函数，每次线程调用了SignalAndWait方法后该回调函数会被执行。
+
+### Recipe8 使用ReaderWriterLockSlim类
+
+> 描述如何使用ReaderWriterLockSlim创建一个线程安全的机制，在多线程中对一个集合进行读写操作。<br/>
+> ReaderWriterLockSlim代表了一个管理资源访问的锁，允许多个线程同时读取，以及独占写。
 
 
 <br/>
