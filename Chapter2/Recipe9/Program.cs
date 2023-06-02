@@ -21,7 +21,8 @@ namespace Recipe9
         static volatile bool _isCompleted = false;
 
         /**
-         * 当主程序启动时，定义了一个线程，将执行一个无止境的循环，直到20毫秒后主线程设置_isCompleted变量为true.
+         * 
+         * 当主程序启动时，定义了一个线程，将执行一个无止境的循环，直到20毫秒后主线程设置_isCompleted变量为true。
          * 我们可以试验运行该周期为20 ～ 30秒,通过Windows任务管理器测量CPU的负载情况。
          * 取决于CPU内核数量，任务管理器将显示一个显著的处理时间。
          * 
@@ -44,13 +45,17 @@ namespace Recipe9
             WriteLine("Running user mode waiting");
             t1.Start();
             Sleep(20);
+            //Sleep(TimeSpan.FromSeconds(10));
             _isCompleted = true;
             Sleep(TimeSpan.FromSeconds(1));
-            _isCompleted = false;
+
             WriteLine("Running hybrid SpinWait construct waiting");
+            _isCompleted = false;
             t2.Start();
             Sleep(5);
+            //Sleep(TimeSpan.FromSeconds(10));
             _isCompleted = true;
+            ReadKey();
         }
 
         static void UserModeWait()
@@ -65,10 +70,11 @@ namespace Recipe9
 
         static void HybridSpinWait()
         {
+            //为基于自旋的等待提供支持。
             var w = new SpinWait();
             while (!_isCompleted)
             {
-                w.SpinOnce();
+                w.SpinOnce();//执行单个数值调节钮。
                 WriteLine(w.NextSpinWillYield);
             }
             WriteLine("Waiting is complete");

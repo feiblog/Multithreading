@@ -45,7 +45,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recipe7", "Chapter2\Recipe7
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recipe8", "Chapter2\Recipe8\Recipe8.csproj", "{C497A91A-229B-4297-AEE2-0035483B5CFB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recipe9", "Recipe9\Recipe9.csproj", "{C2A12991-5D8A-4F15-9297-4DBA6D1882D2}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Chapter3", "Chapter3", "{32EBFDA9-6AA9-4742-89A2-BC688063F90B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recipe9", "Chapter2\Recipe9\Recipe9.csproj", "{C2A12991-5D8A-4F15-9297-4DBA6D1882D2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
